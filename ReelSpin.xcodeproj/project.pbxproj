@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		82EB956C2DC5E5B300B32EF0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 82EB956B2DC5E5B300B32EF0 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		82EB954E2DC5E43500B32EF0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		82EB95372DC5E43300B32EF0 /* ReelSpin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReelSpin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EB954D2DC5E43500B32EF0 /* ReelSpinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReelSpinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EB95572DC5E43500B32EF0 /* ReelSpinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReelSpinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		82EB956B2DC5E5B300B32EF0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -92,6 +97,7 @@
 				82EB95502DC5E43500B32EF0 /* ReelSpinTests */,
 				82EB955A2DC5E43500B32EF0 /* ReelSpinUITests */,
 				82EB95382DC5E43300B32EF0 /* Products */,
+				82EB956B2DC5E5B300B32EF0 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82EB956C2DC5E5B300B32EF0 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
