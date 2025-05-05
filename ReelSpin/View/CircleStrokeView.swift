@@ -51,9 +51,16 @@ final class CircleStrokeView: UIView {
     }
 
     // MARK: – API
-    func animateOnce() {
+    // 在外部需要時呼叫；completion 於動畫真正結束後執行
+    func animateOnce(completion: (() -> Void)? = nil) {
         shapeLayer.removeAllAnimations()
         shapeLayer.strokeEnd = 0
+
+        // 用 CATransaction 監聽結束，比 delegate 簡潔
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            completion?()          // 🎯 告訴外部「我畫完了」
+        }
 
         let anim          = CABasicAnimation(keyPath: "strokeEnd")
         anim.fromValue    = 0
@@ -64,5 +71,7 @@ final class CircleStrokeView: UIView {
         anim.isRemovedOnCompletion = false
 
         shapeLayer.add(anim, forKey: "strokeEndAnim")
+        CATransaction.commit()
     }
+
 }

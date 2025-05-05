@@ -55,29 +55,35 @@ final class MoviesViewController: UIViewController {
         NSLayoutConstraint.activate([
             stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
+            stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            stack.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24)
         ])
     }
 
     private func fetchData() {
-        loader.animateOnce()
+        loader.animateOnce { [weak self] in
+            // 當動畫真正結束時才會呼叫這裡
+            guard let self else { return }
+            
+            // 呼叫 API → 拿到資料 → 顯示電影
+            MovieService.shared.fetchPopularMovies { [weak self] result in
+                DispatchQueue.main.async {
+                    guard let self else { return }
+                    switch result {
+                    case .success(let movies):
+                        // 只挑第一筆有 poster 的
+                        let firstWithPoster = movies.first { $0.posterPath != nil }
+                        self.show(movie: firstWithPoster)
 
-        MovieService.shared.fetchPopularMovies { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self else { return }
-                switch result {
-                case .success(let movies):
-                    // ① 只挑 posterPath 有值的第一筆
-                    let firstWithPoster = movies.first { $0.posterPath != nil }
-                    self.show(movie: firstWithPoster)
-
-                case .failure(let err):
-                    print("🔴 API error:", err)
-                    // TODO: show error UI
+                    case .failure(let err):
+                        print("🔴 API error:", err)
+                        // TODO: show error UI
+                    }
                 }
             }
         }
     }
+
 
     private func show(movie: Movie?) {
         loader.isHidden = true
