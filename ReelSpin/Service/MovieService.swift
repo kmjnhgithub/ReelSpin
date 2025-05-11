@@ -4,7 +4,7 @@ final class MovieService {
     static let shared = MovieService()
     private init() {}
 
-    private let apiKey = "4ac582b7383094a4db732098e0d92424"
+    private let apiKey = ""
     private let session: URLSession = {
         let cfg = URLSessionConfiguration.default
         cfg.waitsForConnectivity = true            // iOS 13+: 若無網路會等
